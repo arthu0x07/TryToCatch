@@ -1,18 +1,49 @@
-print(' Irei pensar em um número. Selecione uma Dificuldade: (1, 2, 3).')
+import random
+PlayAgain = 'Y'
+Trying = True
+Tentativas = 0;
 
 
-def StartingGame( DificultySelected = input() ):
-    if int(DificultySelected) == 1:
-        GameDificultyOne()
+while PlayAgain == 'Y':
+
+    print('Digite uma dificuldade: (1, 2, 3)')
+
+    Dificulty = int(input());
+
+    if      (Dificulty == 1):
+        SelectedNumber = random.randint(0, 20)
+        limit = 20;
+
+    elif    (Dificulty == 2):
+        SelectedNumber = random.randint(0, 40)
+        limit = 40;
+
+    elif    (Dificulty == 3):
+        SelectedNumber = random.randint(0, 100)
+        limit = 100;
+
+    print('O número está entre 0 e ' + str(limit))
+
+    Trying = True;
     
-    elif int(DificultySelected) == 2:
-        GameDificultyTwo()
+    while Trying:
 
-    elif int(DificultySelected) == 3:
-        GameDificultyThree()
+        print('Digite sua tentativa...')
+        Tryed = int(input())
+        if(SelectedNumber == Tryed):
+            print('Gol...')
+            Trying = False;
+            Tentativas = Tentativas + 1
+            print('Você conseguiu em: ' + str(Tentativas) +  ' tentivas.')
 
-    else:
-        print('Selecione um valor pré-definido')
-        StartingGame()
 
-def GameDificultyOne():
+
+        elif(Tryed > SelectedNumber):
+                print('Tente mais baixo...')
+                Tentativas = Tentativas + 1
+                continue;
+
+        elif(Tryed < SelectedNumber):
+                print('Tente mais alto...')
+                Tentativas = Tentativas + 1
+                continue;
